@@ -11,10 +11,14 @@ RUN apt-get update -qq && apt-get install -y \
     yarn \
     libpq-dev
 
-WORKDIR /app
-COPY . /app
-
 RUN gem install bundler
+
+WORKDIR /usr/src/app
+
+COPY package.json yarn.lock ./
+RUN yarn install --check-files
+
+COPY Gemfile* ./
 RUN bundle install
 
-RUN yarn install --check-files
+COPY . .
