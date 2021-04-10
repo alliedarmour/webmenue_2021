@@ -23,14 +23,14 @@ gem "bcrypt"
 # Use Active Storage variant
 # gem "image_processing", "~> 1.2"
 
-# Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
 group :development, :test do
-  # Call "byebug" anywhere in the code to stop execution and get a debugger console
-  gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
+  gem "byebug"
   gem "capybara"
   gem "active_decorator-rspec"
+  gem "dotenv-rails"
+  gem "rspec-rails"
 end
 
 group :development do
@@ -75,7 +75,3 @@ gem "grover"
 
 # Seeding fake data
 gem "faker"
-
-group :development, :test do
-  gem "rspec-rails"
-end

@@ -1,24 +1,18 @@
 default: &default
   adapter: postgresql
   encoding: unicode
+  database: <%= ENV["POSTGRES_DB"] %>
+  username: <%= ENV["POSTGRES_USER"] %>
+  password: <%= ENV["POSTGRES_PASSWORD"] %>
+  port: 5432
+  host: <%= ENV.fetch("DATABASE_HOST") { "localhost" } %>
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
-  host: localhost
-  database: webmenue_2021_development
-  username: webmenue_db_user
-  password: webmenue_2021
 
 test:
   <<: *default
-  database: webmenue_2021_test
-  host: localhost
-  username: webmenue_db_user
-  password: webmenue_2021
 
 production:
   <<: *default
-  database: webmenue_2021_production
-  username: webmenue_2021
-  password: <%= ENV['WEBMENUE_2021_DATABASE_PASSWORD'] %>
