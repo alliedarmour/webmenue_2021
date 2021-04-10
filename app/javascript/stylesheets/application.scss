@@ -1,0 +1,16 @@
+@import "bootstrap";
+@import "./login.scss";
+
+$bdh-orange: #F56117;
+
+body {
+    margin: 0;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.navbar {
+    background-color: $bdh-orange;
+}
+
+
