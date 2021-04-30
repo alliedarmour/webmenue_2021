@@ -1,7 +1,10 @@
 require_relative "./helpers/omniauth_test_helper"
+require "view_component/test_helpers"
+require "active_decorator/rspec"
 
 RSpec.configure do |config|
   config.include OmniauthTestHelper, type: :request
+  config.include ViewComponent::TestHelpers, type: :component
 
   config.expect_with :rspec do |expectations|
     # This option will default to `true` in RSpec 4. It makes the `description`

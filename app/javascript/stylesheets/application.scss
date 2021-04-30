@@ -11,6 +11,12 @@ body {
 
 .navbar {
     background-color: $bdh-orange;
+    .dropdown-menu {
+        .dropdown-logout {
+            color: white;
+            background-color: red;
+        }
+    }
 }
 
 

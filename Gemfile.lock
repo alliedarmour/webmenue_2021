@@ -69,9 +69,12 @@ GEM
       zeitwerk (~> 2.3)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
+    ast (2.4.2)
+    backport (1.1.2)
     bcrypt (3.1.16)
+    benchmark (0.1.1)
     bindex (0.8.1)
-    bootsnap (1.7.3)
+    bootsnap (1.7.4)
       msgpack (~> 1.0)
     builder (3.2.4)
     byebug (11.1.3)
@@ -86,7 +89,7 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
-    chartkick (4.0.2)
+    chartkick (4.0.3)
     chunky_png (1.4.0)
     combine_pdf (1.0.21)
       ruby-rc4 (>= 0.1.5)
@@ -97,6 +100,7 @@ GEM
     dotenv-rails (2.7.6)
       dotenv (= 2.7.6)
       railties (>= 3.2)
+    e2mmap (0.1.0)
     erubi (1.10.0)
     faker (2.17.0)
       i18n (>= 1.6, < 2)
@@ -111,8 +115,13 @@ GEM
     hashie (4.1.0)
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
+    jaro_winkler (1.5.4)
     jbuilder (2.11.2)
       activesupport (>= 5.0.0)
+    kramdown (2.3.1)
+      rexml
+    kramdown-parser-gfm (1.1.0)
+      kramdown (~> 2.0)
     listen (3.5.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -138,14 +147,17 @@ GEM
     omniauth-identity (3.0.8)
       bcrypt
       omniauth
-    pagy (4.2.0)
+    pagy (4.5.0)
+    parallel (1.20.1)
+    parser (3.0.1.0)
+      ast (~> 2.4.1)
     pg (1.2.3)
     public_suffix (4.0.6)
     puma (5.2.2)
       nio4r (~> 2.0)
     racc (1.5.2)
     rack (2.2.3)
-    rack-mini-profiler (2.3.1)
+    rack-mini-profiler (2.3.2)
       rack (>= 1.2.0)
     rack-protection (2.1.0)
       rack
@@ -182,13 +194,17 @@ GEM
       method_source
       rake (>= 0.8.7)
       thor (~> 1.0)
+    rainbow (3.0.0)
     rake (13.0.3)
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     redis (4.2.5)
     regexp_parser (2.1.1)
-    rolify (5.3.0)
+    reverse_markdown (2.0.0)
+      nokogiri
+    rexml (3.2.5)
+    rolify (6.0.0)
     rqrcode (1.2.0)
       chunky_png (~> 1.0)
       rqrcode_core (~> 0.2)
@@ -214,8 +230,34 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.10.2)
+    rubocop (1.13.0)
+      parallel (~> 1.10)
+      parser (>= 3.0.0.0)
+      rainbow (>= 2.2.2, < 4.0)
+      regexp_parser (>= 1.8, < 3.0)
+      rexml
+      rubocop-ast (>= 1.2.0, < 2.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 1.4.0, < 3.0)
+    rubocop-ast (1.4.1)
+      parser (>= 2.7.1.5)
+    ruby-progressbar (1.11.0)
     ruby-rc4 (0.1.5)
     semantic_range (3.0.0)
+    solargraph (0.40.4)
+      backport (~> 1.1)
+      benchmark
+      bundler (>= 1.17.2)
+      e2mmap
+      jaro_winkler (~> 1.5)
+      kramdown (~> 2.3)
+      kramdown-parser-gfm (~> 1.1)
+      parser (~> 3.0)
+      reverse_markdown (>= 1.0.5, < 3)
+      rubocop (>= 0.52)
+      thor (~> 1.0)
+      tilt (~> 2.0)
+      yard (~> 0.9, >= 0.9.24)
     spring (2.1.1)
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
@@ -232,6 +274,7 @@ GEM
       redis
     thor (1.1.0)
     thread-local (1.1.0)
+    tilt (2.0.10)
     turbo-rails (0.5.9)
       rails (>= 6.0.0)
     turbolinks (5.2.1)
@@ -239,12 +282,15 @@ GEM
     turbolinks-source (5.2.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
+    unicode-display_width (2.0.0)
+    view_component (2.31.1)
+      activesupport (>= 5.0.0, < 7.0)
     web-console (4.1.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
-    webpacker (5.2.1)
+    webpacker (5.3.0)
       activesupport (>= 5.2)
       rack-proxy (>= 0.6.1)
       railties (>= 5.2)
@@ -254,10 +300,12 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
+    yard (0.9.26)
     zeitwerk (2.4.2)
 
 PLATFORMS
   x86_64-darwin-19
+  x86_64-darwin-20
   x86_64-linux
 
 DEPENDENCIES
@@ -286,16 +334,18 @@ DEPENDENCIES
   rolify
   rqrcode
   rspec-rails
+  solargraph
   spring
   stimulus_reflex
   turbo-rails
   turbolinks
   tzinfo-data
+  view_component
   web-console
   webpacker
 
 RUBY VERSION
-   ruby 3.0.0p0
+   ruby 3.0.1p64
 
 BUNDLED WITH
    2.2.16

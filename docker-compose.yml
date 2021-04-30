@@ -2,7 +2,7 @@ services:
     app:
         build:
             context: .
-            dockerfile: Dockerfile
+            dockerfile: Dockerfile.development
         command: ["rails", "server", "-b", "0.0.0.0"]
         entrypoint: /usr/src/app/entrypoints/entrypoint.sh
         env_file:
@@ -19,6 +19,8 @@ services:
         depends_on:
             - database
             - redis
+        stdin_open: true
+        tty: true
     webpacker:
         build: .
         environment:

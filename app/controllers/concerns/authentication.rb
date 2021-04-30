@@ -17,7 +17,7 @@ module Authentication
     end
 
     def current_user
-        @user = Current.user || get_user_from_session
+        ActiveDecorator::Decorator.instance.decorate(get_user_from_session)
     end
 
     def logged_in?
@@ -27,10 +27,10 @@ module Authentication
     protected 
 
     def get_user_from_session
-        if @user = User.find_by(id: cookies.permanent.signed[:user_id]).present?
-            @user
+        if user = User.find_by(id: cookies.permanent.signed[:user_id])
+            @current_user = user
         else
-            @user = User.find_by(id: session[:user_id])
+            @current_user = User.find_by(id: session[:user_id])
         end
     end
 end

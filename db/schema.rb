@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_03_191127) do
+ActiveRecord::Schema.define(version: 2021_04_11_194400) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,24 @@ ActiveRecord::Schema.define(version: 2021_04_03_191127) do
     t.index ["user_id"], name: "index_identities_on_user_id"
   end
 
+  create_table "meals", force: :cascade do |t|
+    t.text "description"
+    t.string "tip"
+    t.date "day"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "order_cards", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "meal_id", null: false
+    t.date "day"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["meal_id"], name: "index_order_cards_on_meal_id"
+    t.index ["user_id"], name: "index_order_cards_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -33,4 +51,6 @@ ActiveRecord::Schema.define(version: 2021_04_03_191127) do
   end
 
   add_foreign_key "identities", "users"
+  add_foreign_key "order_cards", "meals"
+  add_foreign_key "order_cards", "users"
 end

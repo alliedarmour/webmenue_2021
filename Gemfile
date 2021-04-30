@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.0.0"
+ruby "3.0.1"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails"
@@ -31,6 +31,7 @@ group :development, :test do
   gem "active_decorator-rspec"
   gem "dotenv-rails"
   gem "rspec-rails"
+  gem "solargraph"
 end
 
 group :development do
@@ -50,10 +51,11 @@ gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # I18n for localization
 gem "rails-i18n"
 
-# Stimulus + Stimulus Reflex + CableReady + TurboJS
+# Stimulus + Stimulus Reflex + CableReady + TurboJS + ViewComponents
 gem "stimulus_reflex"
 gem "cable_ready"
 gem "turbo-rails"
+gem "view_component", require: "view_component/engine"
 gem "omniauth-identity"
 gem "rolify"
 
