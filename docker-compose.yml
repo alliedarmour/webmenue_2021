@@ -22,7 +22,9 @@ services:
         stdin_open: true
         tty: true
     webpacker:
-        build: .
+        build:
+            context: .
+            dockerfile: Dockerfile.development
         environment:
             - NODE_ENV=development
             - RAILS_ENV=development
@@ -50,7 +52,6 @@ services:
             - "6379"
         volumes:
             - redis:/data
-
 volumes:
     gem_cache:
     db_data:
