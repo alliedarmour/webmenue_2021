@@ -1,6 +1,6 @@
 require "faker"
 
-Creating Users and their according Identities
+# Creating Users and their according Identities
 50.times do |count|
     user = User.new(
         first_name: Faker::Name.first_name,
@@ -21,3 +21,7 @@ end
         Meal.create!(tip: key, description: Faker::Food.description, day: Date.today + idx)
     end
 end
+
+# Create LdapConfig
+ldap_yaml = YAML.load(File.read(Rails.root.join("config", "ldap.yml")))
+Config.create(configurable: LdapConfig.create(ldap_yaml["development"]))

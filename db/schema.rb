@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_11_194400) do
+ActiveRecord::Schema.define(version: 2021_05_24_100431) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "configs", force: :cascade do |t|
+    t.string "configurable_type", null: false
+    t.bigint "configurable_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["configurable_type", "configurable_id"], name: "index_configs_on_configurable"
+  end
 
   create_table "identities", force: :cascade do |t|
     t.string "username"
@@ -23,6 +31,17 @@ ActiveRecord::Schema.define(version: 2021_04_11_194400) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "provider"
     t.index ["user_id"], name: "index_identities_on_user_id"
+    t.index ["username"], name: "index_identities_on_username", unique: true
+  end
+
+  create_table "ldap_configs", force: :cascade do |t|
+    t.string "host"
+    t.integer "port"
+    t.string "base"
+    t.string "username"
+    t.string "password"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "meals", force: :cascade do |t|

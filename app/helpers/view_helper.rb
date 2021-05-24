@@ -19,7 +19,7 @@ module ViewHelper
                                 concat(
                                     content_tag(:li) do 
                                         concat(link_to("Profil", "#", class: "dropdown-item"))
-                                        concat(link_to("Logout", "#", class: "dropdown-item dropdown-logout"))
+                                        concat(link_to("Logout", logout_path, method: :delete, class: "dropdown-item dropdown-logout"))
                                     end
                                 )
                             end

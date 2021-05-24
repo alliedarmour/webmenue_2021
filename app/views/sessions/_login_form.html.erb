@@ -1,13 +1,4 @@
-<%= form_with(url: auth_identity_callback_path) do |f| %>
-  <div class="text-center text-black"><h1>Login</h1></div>
-
-  <hr>
-
-  <div class="illustration">
-    <%= image_pack_tag("logo.jpg", size: "181x116") %>
-  </div>
-
-  <hr>
+<%= form_with(url: @ldap? ldap_login_path : auth_callback_path(provider: "identity")) do |f| %>
 
   <div class="mb-3"> 
     <%= f.text_field :auth_key, class: "form-control" %>
@@ -23,6 +14,10 @@
     <%= f.check_box :remember_me, class: "form-check-input" %>
     <%= f.label :remember_me, "Angemeldet bleiben?", class: "form-check-label" %>
   </div>
+
+  <% unless @ldap %>
+    Todo: Mobile TOken
+  <% end%>
 
   <div class="d-grid">
     <%= f.submit "Login", class: "btn btn-primary" %>

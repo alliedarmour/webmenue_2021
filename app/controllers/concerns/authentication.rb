@@ -1,5 +1,4 @@
 module Authentication
-    include SessionsHelper
     extend ActiveSupport::Concern 
 
     included do 

@@ -57,6 +57,7 @@ gem "cable_ready"
 gem "turbo-rails"
 gem "view_component", require: "view_component/engine"
 gem "omniauth-identity"
+gem "net-ldap"
 gem "rolify"
 
 # Decorator to not pollute models

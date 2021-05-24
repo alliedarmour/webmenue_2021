@@ -1,5 +1,17 @@
 <%= content_for(:title, "WebMenue - Login") %>
 
 <section class="login-clean shadow-lg">
-  <%= render "login_form" %>
+  <div class="login-form">
+    <div class="illustration">
+      <%= image_pack_tag("logo.jpg", size: "181x116") %>
+    </div>
+
+    <div class="text-center text-black"><h1>Login</h1></div>
+    <%= render "login_form", ldap: @ldap %>
+
+    <div class="form-check form-switch mt-2">
+      <%= check_box_tag :ldap, @ldap, @ldap, class: "form-check-input", data: { reflex: "change->Form#login" } %>
+      <%= label_tag :ldap, "LDAP-Login", class: "form-check-label" %>
+    </div>
+  </div>
 </section>

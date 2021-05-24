@@ -1,22 +1,34 @@
 class SessionsController < ApplicationController
-  include SessionsHelper
+  include Rememberable
+  include LdapAuthenticable
   
-  skip_before_action :authenticated_user, only: [:new, :create, :failure]
+  skip_before_action :authenticated_user, only: [:new, :create_from_ldap, :create_from_identity, :failure]
     
-  def new; end
+  def new 
+    @ldap ||= false
+  end
 
-  def create
+  def create_from_identity
     if identity = Identity.find_from_auth_hash(auth_hash)
-      if params[:remember_me] == "1"
-        self.set_permanent_cookie = identity.user_id
-      else
-        self.set_session_cookie = identity.user_id
-      end
+      set_user_in_session(params[:remember_me], identity.user_id)
       redirect_to dashboard_path
     end
   end
 
+  def create_from_ldap
+    con = LdapConnector.instance
+    if result = con.authenticate_credentials(username: params[:auth_key], password: params[:password])
+      identity = find_or_create_identity(result.first)
+      set_user_in_session(params[:remember_me], identity.user_id)
+      redirect_to dashboard_path
+    else
+    end
+  end
+
   def destroy
+    reset_session
+    cookies.delete(:user_id)
+    redirect_to root_path
   end
 
   def failure
