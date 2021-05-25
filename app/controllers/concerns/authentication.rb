@@ -23,7 +23,7 @@ module Authentication
         current_user.present?
     end
 
-    protected 
+    private
 
     def get_user_from_session
         if user = User.find_by(id: cookies.permanent.signed[:user_id])

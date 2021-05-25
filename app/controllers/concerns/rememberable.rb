@@ -1,11 +1,6 @@
 module Rememberable
     def set_user_in_session(remember_me, user_id)
-        if remember_me == "1"
-            set_permanent_cookie = user_id
-        else
-            set_session_cookie = user_id
-        end
-        byebug
+        remember_me == "1" ? self.set_permanent_cookie = user_id : self.set_session_cookie = user_id
     end
 
     private

@@ -1,12 +1,27 @@
 @import "bootstrap";
 @import "./login.scss";
 
+// overriding Bootstrap 5 variables if necessary
+
 $bdh-orange: #F56117;
+$card-height: 100%;
 
 body {
     margin: 0;
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: transparent;
+}
+
+.feature-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    height: 4rem;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    color: #fff;
+    border-radius: .75rem;
 }
 
 .navbar {

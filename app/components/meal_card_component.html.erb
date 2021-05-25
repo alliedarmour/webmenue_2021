@@ -1,1 +1,11 @@
-<div>Add MealCard template here</div>
+<div class="feature col">
+  <div class="feature-icon bg-<%= tile_color(meal) %> bg-gradient">
+    <i class="bi-grid" style="font-size: 2rem"></i>
+  </div>
+  <h2><%= meal.tip_before_type_cast %></h2>
+  <p><%= description %></p>
+  <a href="#" class="icon-link">
+    Call to action
+    <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"/></svg>
+  </a>
+</div>
